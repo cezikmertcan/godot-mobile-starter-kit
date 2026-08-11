@@ -1,0 +1,56 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="godot-mobile-starter-kit"
+run/main_scene="res://scenes/bootstrap.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+AdsManager="*res://scripts/godot/ads_manager.gd"
+SaveService="*res://services/save_service.gd"
+SettingsService="*res://services/settings_service.gd"
+AudioManager="*res://services/audio_manager.gd"
+HapticManager="*res://services/haptic_manager.gd"
+SoftCurrencyService="*res://services/soft_currency_service.gd"
+RewardService="*res://services/reward_service.gd"
+AdFrequencyController="*res://services/ad_frequency_controller.gd"
+RewardedAdHelper="*res://services/rewarded_ad_helper.gd"
+GameSession="*res://services/game_session.gd"
+LoadingOverlay="*res://core/loading_overlay.gd"
+PopupManager="*res://core/popup_manager.gd"
+SceneTransitionManager="*res://core/scene_transition_manager.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=720
+window/size/window_height_override=1280
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/LevelPlayAds/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

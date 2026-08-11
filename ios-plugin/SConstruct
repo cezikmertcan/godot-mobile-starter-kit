@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+
+import os
+import subprocess
+
+opts = Variables([], ARGUMENTS)
+opts.Add(EnumVariable("target", "Compilation target", "debug", ["debug", "release"]))
+opts.Add(EnumVariable("arch", "Compilation architecture", "arm64", ["arm64", "x86_64"]))
+opts.Add(BoolVariable("simulator", "Build for the iOS simulator", False))
+opts.Add(PathVariable("godot_source", "Path to the matching Godot source tree", ""))
+opts.Add(PathVariable("levelplay_headers", "Path to IronSource.framework/Headers", ""))
+opts.Add(PathVariable("target_path", "Directory for generated static libraries", "build"))
+
+env = Environment(ENV=os.environ)
+opts.Update(env)
+
+if not env["godot_source"]:
+    raise ValueError("godot_source is required and must match the project's Godot version")
+if not env["levelplay_headers"]:
+    raise ValueError("levelplay_headers is required; run pod install first")
+
+godot_source = os.path.abspath(env["godot_source"])
+levelplay_headers = os.path.abspath(env["levelplay_headers"])
+sdk_name = "iphonesimulator" if env["simulator"] else "iphoneos"
+
+try:
+    sdk_path = subprocess.check_output(
+        ["xcrun", "--sdk", sdk_name, "--show-sdk-path"], text=True
+    ).strip()
+except (OSError, subprocess.CalledProcessError) as error:
+    raise ValueError(f"Could not locate the {sdk_name} SDK: {error}")
+
+deployment_flag = (
+    "-mios-simulator-version-min=14.0"
+    if env["simulator"]
+    else "-miphoneos-version-min=14.0"
+)
+module_cache = os.path.join(os.path.abspath(env["target_path"]), "clang-module-cache")
+
+env.Replace(
+    CC="clang",
+    CXX="clang++",
+    AR="ar",
+    RANLIB="ranlib",
+    LIBPREFIX="",
+    LIBSUFFIX=".a",
+)
+env.Append(
+    CPPPATH=[
+        ".",
+        "src",
+        godot_source,
+        os.path.join(godot_source, "platform", "ios"),
+        levelplay_headers,
+    ],
+    CCFLAGS=[
+        "-arch",
+        env["arch"],
+        "-isysroot",
+        sdk_path,
+        deployment_flag,
+        "-fmodules",
+        "-fcxx-modules",
+        f"-fmodules-cache-path={module_cache}",
+        "-fobjc-arc",
+        "-fblocks",
+        "-fvisibility=hidden",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Werror=return-type",
+    ],
+    CFLAGS=["-std=gnu11"],
+    CXXFLAGS=[
+        "-std=gnu++17",
+        "-DIOS_ENABLED",
+        "-DUNIX_ENABLED",
+        "-DVULKAN_ENABLED",
+        "-DNEED_LONG_INT",
+        "-DLIBYUV_DISABLE_NEON",
+    ],
+)
+
+if env["target"] == "debug":
+    env.Append(
+        CCFLAGS=["-O0", "-g"],
+        CPPDEFINES=["DEBUG_ENABLED", "DEBUG_MEMORY_ALLOC", "DISABLE_FORCED_INLINE"],
+    )
+else:
+    env.Append(CCFLAGS=["-O2", "-fomit-frame-pointer"], CPPDEFINES=["NDEBUG"])
+
+platform_name = "simulator" if env["simulator"] else "device"
+variant_directory = os.path.join(
+    os.path.abspath(env["target_path"]),
+    "obj",
+    env["target"],
+    platform_name,
+    env["arch"],
+)
+VariantDir(variant_directory, "src", duplicate=False)
+sources = Glob(os.path.join(variant_directory, "*.cpp")) + Glob(
+    os.path.join(variant_directory, "*.mm")
+)
+library_name = f"LevelPlayAds.{env['arch']}-{platform_name}.{env['target']}.a"
+library = env.StaticLibrary(
+    target=os.path.join(env["target_path"], library_name),
+    source=sources,
+)
+
+Default(library)
+Help(opts.GenerateHelpText(env))

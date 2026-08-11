@@ -1,0 +1,17 @@
+[config]
+
+name="LevelPlayAds"
+binary="LevelPlayAds.xcframework"
+initialization="levelplay_ads_initialize"
+deinitialization="levelplay_ads_deinitialize"
+
+[dependencies]
+
+linked=[]
+embedded=[]
+system=["Foundation.framework", "UIKit.framework"]
+capabilities=[]
+files=[]
+linker_flags=["-ObjC"]
+
+[plist]

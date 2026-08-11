@@ -1,0 +1,18 @@
+{
+  "android": {
+    "app_key": "REPLACE_WITH_ANDROID_LEVELPLAY_APP_KEY",
+    "rewarded_ad_unit_id": "REPLACE_WITH_ANDROID_REWARDED_AD_UNIT_ID",
+    "interstitial_ad_unit_id": "REPLACE_WITH_ANDROID_INTERSTITIAL_AD_UNIT_ID",
+    "banner_ad_unit_id": "REPLACE_WITH_ANDROID_BANNER_AD_UNIT_ID",
+    "banner_placement": "",
+    "enable_test_suite": false
+  },
+  "ios": {
+    "app_key": "REPLACE_WITH_IOS_LEVELPLAY_APP_KEY",
+    "rewarded_ad_unit_id": "REPLACE_WITH_IOS_REWARDED_AD_UNIT_ID",
+    "interstitial_ad_unit_id": "REPLACE_WITH_IOS_INTERSTITIAL_AD_UNIT_ID",
+    "banner_ad_unit_id": "REPLACE_WITH_IOS_BANNER_AD_UNIT_ID",
+    "banner_placement": "",
+    "enable_test_suite": false
+  }
+}

@@ -1,0 +1,10 @@
+platform :ios, '14.0'
+
+project '__PROJECT_FILE__'
+
+target '__TARGET_NAME__' do
+  use_frameworks! :linkage => :static
+
+  pod 'IronSourceSDK', '9.5.0.0'
+  pod 'IronSourceUnityAdsAdapter', '5.8.0.0'
+end

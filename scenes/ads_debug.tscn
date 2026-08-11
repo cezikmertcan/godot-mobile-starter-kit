@@ -1,0 +1,222 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/godot/ads_debug.gd" id="1_ads_debug"]
+
+[node name="AdsDebug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ads_debug")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.035, 0.047, 0.078, 1)
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Content" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.82, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "LevelPlay Ads Debug"
+
+[node name="Subtitle" type="Label" parent="Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.72, 0.82, 1)
+text = "Godot mobile foundation • Android and iOS provider boundary"
+autowrap_mode = 2
+
+[node name="StatusTitle" type="Label" parent="Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.42, 1)
+theme_override_font_sizes/font_size = 18
+text = "Status"
+
+[node name="StatusGrid" type="GridContainer" parent="Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 6
+
+[node name="PlatformLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "Current platform"
+
+[node name="PlatformValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Unknown"
+
+[node name="ProviderLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "Active provider"
+
+[node name="ProviderValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Unavailable"
+
+[node name="SdkLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "SDK state"
+
+[node name="SdkValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Not initialized"
+
+[node name="RewardedLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "Rewarded state"
+
+[node name="RewardedValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Idle"
+
+[node name="InterstitialLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "Interstitial state"
+
+[node name="InterstitialValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Idle"
+
+[node name="BannerLabel" type="Label" parent="Margin/Content/StatusGrid"]
+layout_mode = 2
+text = "Banner state"
+
+[node name="BannerValue" type="Label" parent="Margin/Content/StatusGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+text = "Hidden"
+
+[node name="ButtonsTitle" type="Label" parent="Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.42, 1)
+theme_override_font_sizes/font_size = 18
+text = "Controls"
+
+[node name="Buttons" type="GridContainer" parent="Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="InitializeButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Initialize SDK"
+
+[node name="LoadRewardedButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load Rewarded"
+
+[node name="ShowRewardedButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Rewarded"
+
+[node name="LoadInterstitialButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load Interstitial"
+
+[node name="ShowInterstitialButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Interstitial"
+
+[node name="ShowBannerButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Banner"
+
+[node name="HideBannerButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hide Banner"
+
+[node name="ClearLogButton" type="Button" parent="Margin/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clear Log"
+
+[node name="LogTitle" type="Label" parent="Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.42, 1)
+theme_override_font_sizes/font_size = 18
+text = "Event log"
+
+[node name="LogPanel" type="PanelContainer" parent="Margin/Content"]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogOutput" type="RichTextLabel" parent="Margin/Content/LogPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = false
+fit_content = false
+scroll_active = true
+selection_enabled = true
+text = ""

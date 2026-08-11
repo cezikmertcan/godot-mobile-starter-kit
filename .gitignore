@@ -1,0 +1,80 @@
+# Godot editor and import state
+/.godot/
+*.import
+export_credentials.cfg
+
+# Local project configuration
+/config/levelplay_config.json
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+*.secrets
+*.token
+secrets/
+credentials/
+
+# Generated Android project and native build output
+/android/
+/.gradle/
+/android-plugin/.gradle/
+/android-plugin/.kotlin/
+/android-plugin/**/.gradle/
+/android-plugin/**/build/
+/android-plugin/local.properties
+/addons/LevelPlayAds/bin/**/*.aar
+*.apk
+*.aab
+
+# iOS dependencies, generated libraries, and exports
+/ios-plugin/Pods/
+/ios-plugin/godot/
+/ios-plugin/build/
+/ios-plugin/bin/
+/ios-plugin/Podfile.lock
+/ios-plugin/.sconsign*
+/ios/plugins/LevelPlayAds/LevelPlayAds.gdip
+/ios/plugins/LevelPlayAds/*.debug.xcframework/
+/ios/plugins/LevelPlayAds/*.release.xcframework/
+/builds/ios/
+/builds/releases/
+*.ipa
+*.xcarchive/
+*.dSYM/
+**/xcuserdata/
+*.xcuserstate
+DerivedData/
+
+# Signing credentials and store/service configuration
+*.keystore
+*.jks
+*.p12
+*.p8
+*.pfx
+*.pem
+*.key
+*.cer
+*.crt
+*.der
+*.csr
+*.mobileprovision
+*.provisionprofile
+keystore.properties
+local.properties
+google-services.json
+GoogleService-Info.plist
+firebase_app_id_file.json
+service-account*.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE and operating-system files
+/.idea/
+/.vscode/
+*.iml
+.DS_Store
+Thumbs.db
